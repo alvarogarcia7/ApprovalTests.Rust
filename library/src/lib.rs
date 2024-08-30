@@ -5,17 +5,12 @@ pub fn verify(string: String) {
 #[macro_export]
 macro_rules! log_invocation {
     () => {
-        std::panic::set_hook(Box::new(|panic_info| {
-            let backtrace = std::backtrace::Backtrace::capture();
-            eprintln!("My backtrace: {:#?}", backtrace);
-        }));
         let parts: Vec<&str> = file!().split("/").collect();
         let where_to_place_the_test_file = parts[..parts.len() - 1].to_vec().join("/");
         // println!("{:?}", where_to_place_the_test_file);
-        panic!(
-            "Please create a test file in the following location: {}",
-            where_to_place_the_test_file
-        );
+        let backtrace = std::backtrace::Backtrace::capture();
+        let all_backtrace = format!("{:?}", backtrace);
+        eprintln!("My backtrace: {:#?}", backtrace);
 
         let test_file = (module_path!().to_string() + ".approved.txt").to_string();
         println!("Test file: {}", test_file);
