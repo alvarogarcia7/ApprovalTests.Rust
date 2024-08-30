@@ -11,14 +11,14 @@ macro_rules! log_invocation {
         let backtraceX = std::backtrace::Backtrace::capture();
         let all_backtrace = format!("{:#?}", backtraceX);
         let mut line_has_been_found = 0;
-        let mut selected = "";
+        let mut caller_function_name = "";
         all_backtrace.split("\n").for_each(|line| {
             if line.contains(module_path!()) {
                 if line_has_been_found == 0 {
                     let parts = line.trim().split(", ").collect::<Vec<&str>>();
                     let parts1 = parts[0].splitn(1, ":").collect::<Vec<&str>>();
                     let parts2 = parts[0].split("\"").collect::<Vec<&str>>();
-                    selected = parts2[1];
+                    caller_function_name = parts2[1];
 
                     // println!("Backtrace: {:?}", parts);
                     // println!("Backtrace: {:?}", parts1);
@@ -35,7 +35,7 @@ macro_rules! log_invocation {
             file!(),
             line!(),
             module_path!(),
-            selected
+            caller_function_name
         );
     };
 }
