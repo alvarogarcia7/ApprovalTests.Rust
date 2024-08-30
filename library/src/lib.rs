@@ -2,6 +2,11 @@ pub fn verify(string: String) {
     assert_eq!(string, "Hello, world!");
 }
 
+#[track_caller]
+pub fn who_called_me() {
+    println!("Called from: {}", std::panic::Location::caller());
+}
+
 #[macro_export]
 macro_rules! log_invocation {
     () => {
