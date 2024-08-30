@@ -6,8 +6,8 @@ pub fn verify(string: String) {
 macro_rules! log_invocation {
     () => {
         let parts: Vec<&str> = file!().split("/").collect();
-        let parts2 = parts[..parts.len() - 1].to_vec().join("/");
-        println!("{:?}", parts2);
+        let where_to_place_the_test_file = parts[..parts.len() - 1].to_vec().join("/");
+        println!("{:?}", where_to_place_the_test_file);
         println!(
             "Invoked from file: {}, line: {}, module: {}",
             file!(),
