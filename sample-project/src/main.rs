@@ -8,8 +8,6 @@ fn main() {
 mod tests {
     use crate::lib;
 
-    use super::*;
-
     #[test]
     pub fn main_execution() {
         library::verify(lib());
