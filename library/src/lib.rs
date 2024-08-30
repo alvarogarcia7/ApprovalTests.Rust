@@ -20,9 +20,9 @@ macro_rules! log_invocation {
                     let parts2 = parts[0].split("\"").collect::<Vec<&str>>();
                     selected = parts2[1];
 
-                    println!("Backtrace: {:?}", parts);
-                    println!("Backtrace: {:?}", parts1);
-                    println!("Backtrace: {:?}", parts2);
+                    // println!("Backtrace: {:?}", parts);
+                    // println!("Backtrace: {:?}", parts1);
+                    // println!("Backtrace: {:?}", parts2);
                     set_place = 1;
                 }
             }
