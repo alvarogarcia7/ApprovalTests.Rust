@@ -2,16 +2,6 @@
 
 set -euxo pipefail
 
-#undo_git_changes () {
-#    ARG=$?
-#    set +e #discard any error
-#    git stash pop
-#    set -e
-#    exit $ARG
-#}
-#trap undo_git_changes EXIT
-
-
 make all
 
 exit 0
