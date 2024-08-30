@@ -37,5 +37,23 @@ macro_rules! log_invocation {
             module_path!(),
             caller_function_name
         );
+
+        use std::fs::File;
+        use std::io::Write;
+        use std::path::Path;
+
+        fn create_file_with_content(file_path: &str, content: &str) -> std::io::Result<()> {
+            let path = Path::new(file_path);
+            let mut file = File::create(&path)?;
+            file.write_all(content.as_bytes())?;
+            Ok(())
+        }
+
+        let file_path = &test_file;
+        let content = "Hello, world!";
+        match create_file_with_content(file_path, content) {
+            Ok(_) => println!("File created successfully."),
+            Err(e) => eprintln!("Failed to create file: {}", e),
+        }
     };
 }
