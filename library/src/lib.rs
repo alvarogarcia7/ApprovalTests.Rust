@@ -28,7 +28,7 @@ macro_rules! log_invocation {
             }
         });
 
-        let test_file = (module_path!().to_string() + ".approved.txt").to_string();
+        let test_file = (caller_function_name.to_string() + ".approved.txt").to_string();
         println!("Test file: {}", test_file);
         println!(
             "Invoked from file: {}, line: {}, module: {}, function: {}",
