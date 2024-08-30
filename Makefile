@@ -16,10 +16,6 @@ test:
 	cargo test --all --all-features --tests
 .PHONY: test
 
-test-expensive:
-	cargo test -- --ignored
-.PHONY: test-expensive
-
 test-all: test
 .PHONY: test-all
 
