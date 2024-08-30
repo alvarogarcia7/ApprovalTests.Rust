@@ -6,8 +6,8 @@ fn main() {
 }
 #[cfg(test)]
 mod tests {
-    use library::log_invocation;
     use crate::lib;
+    use library::log_invocation;
 
     #[test]
     pub fn main_execution() {
