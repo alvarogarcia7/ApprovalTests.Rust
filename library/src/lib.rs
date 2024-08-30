@@ -6,7 +6,7 @@ pub fn verify(string: String) {
 macro_rules! log_invocation {
     () => {
         let parts: Vec<&str> = file!().split("/").collect();
-        let where_to_place_the_test_file = parts[..parts.len() - 1].to_vec().join("/");
+        let where_to_place_the_test_file = parts[1..parts.len() - 1].to_vec().join("/");
         // println!("{:?}", where_to_place_the_test_file);
         let backtraceX = std::backtrace::Backtrace::capture();
         let all_backtrace = format!("{:#?}", backtraceX);
@@ -28,8 +28,8 @@ macro_rules! log_invocation {
             }
         });
 
-        let test_file = (caller_function_name.to_string() + ".approved.txt").to_string();
-        println!("Test file: {}", test_file);
+        let test_file: String = (caller_function_name.to_string() + ".approved.txt");
+        println!("Test file: {}", test_file.to_string());
         println!(
             "Invoked from file: {}, line: {}, module: {}, function: {}",
             file!(),
@@ -44,12 +44,18 @@ macro_rules! log_invocation {
 
         fn create_file_with_content(file_path: &str, content: &str) -> std::io::Result<()> {
             let path = Path::new(file_path);
+            println!(
+                "From {:?}, creating file: {:?}",
+                std::env::current_dir(),
+                path
+            );
             let mut file = File::create(&path)?;
             file.write_all(content.as_bytes())?;
             Ok(())
         }
 
-        let file_path = &test_file;
+        let file_path: String = where_to_place_the_test_file + "/" + test_file.as_str();
+        let file_path: &str = file_path.as_str();
         let content = "Hello, world!";
         match create_file_with_content(file_path, content) {
             Ok(_) => println!("File created successfully."),
