@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
 members = [
-    "library",
-    "sample-project"
+    "library"
+    , "sample-project"
 ]
