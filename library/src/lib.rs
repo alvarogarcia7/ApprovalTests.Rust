@@ -10,11 +10,11 @@ macro_rules! log_invocation {
         // println!("{:?}", where_to_place_the_test_file);
         let backtraceX = std::backtrace::Backtrace::capture();
         let all_backtrace = format!("{:#?}", backtraceX);
-        let mut set_place = 0;
+        let mut line_has_been_found = 0;
         let mut selected = "";
         all_backtrace.split("\n").for_each(|line| {
             if line.contains(module_path!()) {
-                if set_place == 0 {
+                if line_has_been_found == 0 {
                     let parts = line.trim().split(", ").collect::<Vec<&str>>();
                     let parts1 = parts[0].splitn(1, ":").collect::<Vec<&str>>();
                     let parts2 = parts[0].split("\"").collect::<Vec<&str>>();
@@ -23,7 +23,7 @@ macro_rules! log_invocation {
                     // println!("Backtrace: {:?}", parts);
                     // println!("Backtrace: {:?}", parts1);
                     // println!("Backtrace: {:?}", parts2);
-                    set_place = 1;
+                    line_has_been_found = 1;
                 }
             }
         });
