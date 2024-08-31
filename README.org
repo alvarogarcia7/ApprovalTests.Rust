@@ -3,4 +3,7 @@
 * Notes [2024-08-31 Sat]
 ** TODO
 - Hacky way of getting the backtrace
-- Hacky way of getting the placement of the file
+ #+begin_src
+if line.contains(module_path!()) {
+#+end_src
+- Hacky way of getting the placement of the file src_rust[header]{let where_to_place_the_test_file = parts[1..parts.len() - 1].to_vec().join("/");}
