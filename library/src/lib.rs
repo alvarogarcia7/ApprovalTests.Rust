@@ -67,11 +67,11 @@ macro_rules! log_invocation {
             Ok(())
         }
 
-        let file_path: String = where_to_place_the_test_file + "/" + test_file.as_str();
-        let file_path: &str = file_path.as_str();
-        match create_file_with_content(file_path, result.as_str()) {
-            Ok(_) => println!("File created successfully."),
-            Err(e) => eprintln!("Failed to create file: {}", e),
-        }
+        // let file_path: String = where_to_place_the_test_file + "/" + test_file.as_str();
+        // let file_path: &str = file_path.as_str();
+        // match create_file_with_content(file_path, result.as_str()) {
+        //     Ok(_) => println!("File created successfully."),
+        //     Err(e) => eprintln!("Failed to create file: {}", e),
+        // }
     };
 }

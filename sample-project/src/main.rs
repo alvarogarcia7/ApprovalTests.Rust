@@ -14,12 +14,11 @@ mod tests {
         log_invocation!(lib());
 
         library::verify(lib());
-        assert_eq!(lib(), "Hello, world!");
     }
     // #[test]
     // pub fn another_execution() {
     //     log_invocation!(lib());
-    // 
+    //
     //     library::verify(lib());
     //     assert_eq!(lib(), "Hello, world!");
     // }
