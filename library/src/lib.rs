@@ -1,9 +1,9 @@
-mod diff_files;
-
 use std::fs::File;
 use std::io;
 use std::io::BufRead;
 use std::path::Path;
+
+mod diff_files;
 
 pub fn verify(string: String) {
     assert_eq!(string, "Hello, world!");
@@ -116,6 +116,11 @@ fn read_lines<P>(filename: P) -> io::Result<Vec<String>>
 where
     P: AsRef<Path>,
 {
+    println!(
+        "From {:?}, reading file: {:?}",
+        std::env::current_dir(),
+        filename.as_ref()
+    );
     println!("Reading file: {:?}", filename.as_ref());
     let file = File::open(filename)?;
     let buf = io::BufReader::new(file);
@@ -142,4 +147,18 @@ pub(crate) fn diff_files(file1: &str, file2: &str) -> io::Result<()> {
     }
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::diff_files;
+
+    #[test]
+    pub fn diff_the_same_file() {
+        diff_files(
+            "./data/main::sample_project::tests::another_execution.approved.txt",
+            "./data/main::sample_project::tests::another_execution.approved.txt",
+        )
+        .unwrap();
+    }
 }
