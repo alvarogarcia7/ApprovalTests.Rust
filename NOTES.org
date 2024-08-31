@@ -16,3 +16,6 @@ if line.contains(module_path!()) {
 - Reporters. Investigate how it works
 - src_language[header]{verify_all} `verify_all` for verifying arrays, lists, etc
 - Discuss with original owners about creating a repo there
+
+* Links
+- https://github.com/alvarogarcia7/fizzbuzz-kata-python/blob/master/tests/e2e/test_FizzBuzzMain.py
