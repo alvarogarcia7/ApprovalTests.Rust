@@ -1,3 +1,5 @@
+#[macro_use]
+extern crate library;
 fn lib() -> String {
     "Hello, world!".to_string()
 }
@@ -7,8 +9,8 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use crate::lib;
-    use library::log_invocation;
 
+    use super::*;
     #[test]
     pub fn main_execution() {
         log_invocation!(lib());
