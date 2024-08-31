@@ -161,4 +161,13 @@ mod tests {
         )
         .unwrap();
     }
+
+    #[test]
+    pub fn diff_different_files_with_the_same_contents() {
+        diff_files(
+            "./data/main::sample_project::tests::another_execution.approved.txt",
+            "./data/main::sample_project::tests::another_execution_copy.approved.txt",
+        )
+        .unwrap();
+    }
 }
