@@ -134,6 +134,8 @@ pub(crate) fn diff_files(file1: &str, file2: &str) -> io::Result<()> {
 
     let max_len = std::cmp::max(lines1.len(), lines2.len());
 
+    let mut has_error = false;
+
     for i in 0..max_len {
         let default = &String::new();
         let line1 = lines1.get(i).unwrap_or(default);
@@ -143,7 +145,12 @@ pub(crate) fn diff_files(file1: &str, file2: &str) -> io::Result<()> {
             println!("Difference at line {}:", i + 1);
             println!("File1: {}", line1);
             println!("File2: {}", line2);
+            has_error = true;
         }
+    }
+
+    if has_error {
+        return Err(io::Error::new(io::ErrorKind::Other, "Files are different"));
     }
 
     Ok(())
@@ -169,5 +176,13 @@ mod tests {
             "./data/main::sample_project::tests::another_execution_copy.approved.txt",
         )
         .unwrap();
+    }
+    #[test]
+    pub fn diff_different_files_with_different_contents() {
+        let result: std::io::Result<()> = diff_files(
+            "./data/main::sample_project::tests::another_execution.approved.txt",
+            "./data/main::sample_project::tests::another_execution_empty.approved.txt",
+        );
+        assert!(result.is_err());
     }
 }
