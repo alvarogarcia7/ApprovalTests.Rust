@@ -1,12 +1,13 @@
 #+title: Readme
 
 * Notes [2024-08-31 Sat 15:36]
+** DONE
+- Filename is missing the file name: should be `sample_project::main::tests::main_execution.approved.txt`
 ** TODO
 - Hacky way of getting the backtrace
  #+begin_src
 if line.contains(module_path!()) {
 #+end_src
-- Filename is missing the file name: should be `sample_project::main::tests::main_execution.approved.txt`
 - Hacky way of getting the placement of the file
   #+begin_src
 let where_to_place_the_test_file = parts[1..parts.len() - 1].to_vec().join("/")

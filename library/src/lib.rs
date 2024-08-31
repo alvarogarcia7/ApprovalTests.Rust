@@ -7,7 +7,17 @@ macro_rules! log_invocation {
     () => {
         let parts: Vec<&str> = file!().split("/").collect();
         let where_to_place_the_test_file = parts[1..parts.len() - 1].to_vec().join("/");
-        // println!("{:?}", where_to_place_the_test_file);
+        println!(
+            "where_to_place_the_test_file: {:?}",
+            where_to_place_the_test_file
+        );
+        let mut caller_file_name = parts[parts.len() - 1..]
+            .to_vec()
+            .join("/")
+            .split(".")
+            .collect::<Vec<&str>>()[0]
+            .to_string();
+        // println!("where_to_place_the_test_file2: {:?}", caller_file_name.to_string());
         let backtraceX = std::backtrace::Backtrace::capture();
         let all_backtrace = format!("{:#?}", backtraceX);
         let mut line_has_been_found = 0;
@@ -18,7 +28,8 @@ macro_rules! log_invocation {
                     let parts = line.trim().split(", ").collect::<Vec<&str>>();
                     let parts1 = parts[0].splitn(1, ":").collect::<Vec<&str>>();
                     let parts2 = parts[0].split("\"").collect::<Vec<&str>>();
-                    caller_function_name = parts2[1];
+                    caller_file_name += "::";
+                    caller_file_name += parts2[1];
 
                     // println!("Backtrace: {:?}", parts);
                     // println!("Backtrace: {:?}", parts1);
@@ -28,7 +39,7 @@ macro_rules! log_invocation {
             }
         });
 
-        let test_file: String = (caller_function_name.to_string() + ".approved.txt");
+        let test_file: String = (caller_file_name.to_string() + ".approved.txt");
         println!("Test file: {}", test_file.to_string());
         println!(
             "Invoked from file: {}, line: {}, module: {}, function: {}",
