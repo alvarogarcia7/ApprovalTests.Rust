@@ -11,7 +11,7 @@ mod tests {
 
     #[test]
     pub fn main_execution() {
-        log_invocation!();
+        log_invocation!(lib());
 
         library::verify(lib());
         assert_eq!(lib(), "Hello, world!");

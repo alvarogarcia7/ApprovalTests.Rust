@@ -4,7 +4,9 @@ pub fn verify(string: String) {
 
 #[macro_export]
 macro_rules! log_invocation {
-    () => {
+    ($func:expr) => {
+        let result = $func;
+        println!("Invoked function returns: {}", result);
         let parts: Vec<&str> = file!().split("/").collect();
         let where_to_place_the_test_file = parts[1..parts.len() - 1].to_vec().join("/");
         println!(
@@ -67,8 +69,7 @@ macro_rules! log_invocation {
 
         let file_path: String = where_to_place_the_test_file + "/" + test_file.as_str();
         let file_path: &str = file_path.as_str();
-        let content = "Hello, world!";
-        match create_file_with_content(file_path, content) {
+        match create_file_with_content(file_path, result.as_str()) {
             Ok(_) => println!("File created successfully."),
             Err(e) => eprintln!("Failed to create file: {}", e),
         }
