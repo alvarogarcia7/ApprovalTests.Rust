@@ -1,6 +1,6 @@
 #+title: Readme
 
-* Notes [2024-08-31 Sat]
+* Notes [2024-08-31 Sat 15:36]
 ** TODO
 - Hacky way of getting the backtrace
  #+begin_src
