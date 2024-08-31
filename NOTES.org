@@ -17,7 +17,9 @@ let where_to_place_the_test_file = parts[1..parts.len() - 1].to_vec().join("/")
 - Find out why approvals didn't get any traction (https://docs.rs/approvals/latest/approvals/)
 ** TODO Later
 - Reporters. Investigate how it works
-- src_language[header]{verify_all} `verify_all` for verifying arrays, lists, etc
+  #+begin_src+verify_all
+`verify_all` for verifying arrays, lists, etc
+  #+end_src
 - Discuss with original owners about creating a repo there
 
 * Links
