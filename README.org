@@ -1,0 +1,6 @@
+#+title: Readme
+
+* Notes [2024-08-31 Sat]
+** TODO
+- Hacky way of getting the backtrace
+- Hacky way of getting the placement of the file
