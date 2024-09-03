@@ -12,11 +12,10 @@ macro_rules! log_invocation {
         let test_file = (module_path!().to_string() + ".approved.txt").to_string();
         println!("Test file: {}", test_file);
         println!(
-            "Invoked from file: {}, line: {}, module: {}, function: {}",
+            "Invoked from file: {}, line: {}, module: {}",
             file!(),
             line!(),
-            module_path!(),
-            std::any::type_name::<fn()>()
+            module_path!()
         );
     };
 }
